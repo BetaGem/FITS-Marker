@@ -1,6 +1,7 @@
 from astropy.io import fits 
 from numpy import sum
 
+# path of the FITS table
 hdul = fits.open('galaxies.fits',mode='update')
 
 def galinfo(k):
