@@ -6,7 +6,7 @@ This is a program for FITS images categorizing, especially useful if you are wor
 
 It's written in JupyterLab in anaconda3 following Flask Web Development by Miguel Grinberg.
 
-In my case, I use it to mark 2088 galaxies from HSC-SSP, with images of 3 bands and a color image for each galaxies, and save the results into a FITS table.
+In my case, I use it to mark 2088 galaxies from HSC-SSP, with images of 3 bands and another color image for each galaxies. I save the results into a FITS table.
 
 Installation
 ------------
