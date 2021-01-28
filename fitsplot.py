@@ -10,11 +10,13 @@ from matplotlib.colors import SymLogNorm
 from numpy import full, min, shape
 from astropy.visualization import make_lupton_rgb
 
-fpath = '/media/qifenghuang/Study/Astronomy/Research/image/2088gal/arch/'
+# folder that contains your FITS images
+fpath = '/arch/'  
 
 def search_fits(n):
     f = 2
     for f_name in listdir(fpath):
+        # in my case, file names begin with '<number>-'
         if f_name.startswith(str(n)+'-'):
             f = f_name
             break
@@ -32,7 +34,9 @@ def print_fig(fig):
     return pngImageB64String
 
 def plot(k, band, style):
+    # image in 3 bands: g,r,i.
     dic = {1:'g',2:'r',3:'i'}
+    
     #load data
     fits_name = search_fits(int(3*k)+int(band)-2)
     hdul = fits.open(str(fpath)+str(fits_name))
@@ -44,7 +48,6 @@ def plot(k, band, style):
     max_c = style[1]
     ax = fig.add_subplot(1,1,1)
     ax.axis('off')
-    # Figure.suptitle(fig,' '+str(dic[band])+' band',fontsize='xx-large') #title
     fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
     ax.imshow(img, 
               cmap='gray',
