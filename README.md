@@ -14,9 +14,9 @@ Image contrast adjustable. Statistical tool available.
 
 **Installation**
 
-Method 1: Follow chapter 1 to 4 of the book mentioned above.
-
 You should have ```numpy, matplotlib, astropy, flask, flask-bootstrap, flask-wtf```  installed first.
+
+Follow chapter 1 to 4 of the book mentioned above, **OR**:
 
 In the installation path:
   1) create a virtual environment (venv):```$ python3 -m venv venv```, then activate it: ```$ source <name>/bin/activate```
