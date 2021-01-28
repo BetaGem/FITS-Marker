@@ -14,12 +14,16 @@ Image contrast adjustable. Statistical tool available.
 
 **Installation**
 
+Method 1: Follow chapter 1 to 4 of the book mentioned above.
+
 You should have ```numpy, matplotlib, astropy, flask, flask-bootstrap, flask-wtf```  installed first.
 
 In the installation path:
-  1) create a virtual environment(venv), activate it: source <name>/bin/activate
-  2) export FLASK_APP=main.py
-  3) export FLASK_ENV=development
-  4) flask run
+  1) create a virtual environment (venv):```$ python3 -m venv venv```, then activate it: ```$ source <name>/bin/activate```
+  2) ```(venv) $ export FLASK_APP=main.py```
+  3) ```(venv) $ export FLASK_ENV=development```
+  4) ```(venv) $ flask run```
   
-Then in the web browser: localhost:5000
+Then in the web browser, enter URL: localhost:5000/1
+
+**Notice:** Path to the folder containing FITS images and to the FITS table should be specified in source code. 
