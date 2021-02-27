@@ -6,7 +6,7 @@ Update: 01/28/2021
 
 This is a program for FITS images categorizing, especially useful if you are working on a large amount of FITS images.
 
-It's written in JupyterLab in anaconda3 following *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
+It's written with anaconda 3 following this book: *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
 
 In my case, I use it to mark 2088 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy. I save the results into a FITS table.
 
