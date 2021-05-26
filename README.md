@@ -4,13 +4,13 @@ Update: 01/28/2021
 
 **Discription**
 
-This is a program for FITS images categorizing, especially useful if you are working on a large amount of FITS images.
+This is a python written program for FITS images categorizing, especially useful if you are working with a large amount of FITS images.
 
-It's written with anaconda 3 following this book: *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
+It's written following this book: *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
 
-In my case, I use it to mark 2088 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy. I save the results into a FITS table.
+In my case, I use it to mark 2187 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy. I save the results into a FITS table.
 
-Image contrast adjustable. Statistical tool available.
+Additional features: Image contrast adjustable. Statistical tool that can count the number of galaxies in each type.
 
 **Installation**
 
@@ -26,4 +26,4 @@ In the installation path:
   
 Then in the web browser, enter URL: localhost:5000/1
 
-**Notice:** Path to the folder containing FITS images and to the FITS table should be specified in source code. 
+**Notice:** Path to the folder containing FITS images and to the FITS table should be specified in the source code. 
