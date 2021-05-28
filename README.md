@@ -2,9 +2,9 @@ FITS-Marker Version 0.0.1
 -----------
 Update: 01/28/2021
 
-**Discription**
+**Description**
 
-This is a python written program for FITS images categorizing, especially useful if you are working with a large amount of FITS images.
+This is a python written program for FITS images labeling and categorizing, especially useful for a large amount of FITS images.
 
 It's written following this book: *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
 
