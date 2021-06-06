@@ -1,26 +1,35 @@
 from flask import Flask, render_template, url_for
 from flask_bootstrap import Bootstrap
 
+#初始化，创建应用实例（Flask类的对象）,配置密钥
 app = Flask(__name__) 
-app.config['SECRET_KEY']='hardtoguessstring'
+app.config['SECRET_KEY']='zdsnswzkadxts'
 
+#表单 Flask-WTF
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SubmitField
 from wtforms.validators import DataRequired
 
-from fitsplot import plot,RGB
+#画图
+from fitsplot import plot
+
+#数据
 import data   
 
+#bootstrap
 bootstrap = Bootstrap(app)
 
-#different contrast levels
 contra = '0'    
-contrast_list = {'-2':[-0.8,50],'-1':[-0.6,15],'0':[-0.3,6],'1':[-0.2,2],'2':[-0.1,1],} 
+contrast_list = {'-2':[-0.5,150],'-1':[-0.5,60],'0':[-0.3,10],'1':[-0.2,1.5],'2':[-0.1,0.5],}
 
 class Form(FlaskForm):
-    contrast = SelectField('Contrast',choices=[('-2','-2'),('-1','-1'),('0','0'),('1','1'),('2','2')],render_kw = { 'style':'width:120px;' }, default='0')
+    contrast = SelectField('Contrast',
+                           choices=[('-2','-2'),('-1','-1'),('0','0'),('1','1'),('2','2')],
+                           render_kw = { 'style':'width:120px;' }, 
+                           default='0')
     submit = SubmitField('Submit')
-
+    
+#index.html
 @app.route('/<name>',methods=['GET', 'POST'])
 def index(name):
     
@@ -31,17 +40,17 @@ def index(name):
         contrast = form.contrast.data
         contra = contrast
     k = int(name)
-    fig_g = plot(k,1,contrast_list[contrast])
-    fig_r = plot(k,2,contrast_list[contrast])
-    fig_i = plot(k,3,contrast_list[contrast])
-    fig_c = RGB(k, contra)
+    fig_g = plot(k,1,contrast_list[contrast],con=0)
+    fig_r = plot(k,2,contrast_list[contrast],con=0)
+    fig_i = plot(k,3,contrast_list[contrast],con=0)
+    #fig_c = RGB(k, contra)
     return render_template('index.html',
                            form=form, 
                            k=k,
                            contra=contra,
                            info=data.galinfo(k-1),
-                           fig1=fig_g, fig2=fig_r, fig3=fig_i,fig4=fig_c,
-                           Num=2088                     #total number of sources
+                           fig1=fig_g, fig2=fig_r, fig3=fig_i, #fig4=fig_c,
+                           Num=2187                     #总数
                           )
 
 @app.route('/<name>/last_choice:<val>',methods=['GET', 'POST'])
