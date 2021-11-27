@@ -10,7 +10,7 @@ It's written following this book: *Flask Web Development: Developing Web Applica
 
 In my case, I use it to mark 2187 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy. I save the results into a FITS table.
 
-Additional features: Image contrast adjustable. Statistical tool that can count the number of galaxies in each type.
+Additional features: Image contrast adjustment. Statistical tool for counting the number of galaxies in each type.
 
 **Installation (Linux)**
 
