@@ -11,11 +11,12 @@ from matplotlib.colors import SymLogNorm
 from scipy.signal import convolve2d as conv
 from astropy.visualization import make_lupton_rgb
 
-fpath = '/media/qifenghuang/Study/Astronomy/Research/image/2187/all/'
+fpath = '/xxx/xxx'  # fits 图像所在的目录
 h_1D = np.mat([[1.0/16,1.0/4,3.0/8,1.0/4,1.0/16]])
 Kernal = np.mat([[1.0/16],[1.0/4],[3.0/8],[1.0/4],[1.0/16]])*h_1D
 
 def search_fits(n):
+    '''从目录搜索第 n 个图像并且返回文件名'''
     f = 2
     for f_name in listdir(fpath):
         if f_name.startswith(str(n)+'-'):
@@ -24,7 +25,7 @@ def search_fits(n):
     return f
 
 def print_fig(fig):
-    #Convert plot to PNG image
+    # Convert plot to PNG image
     pngImage = BytesIO()
     FigureCanvas(fig).print_png(pngImage)
     
@@ -35,22 +36,22 @@ def print_fig(fig):
     return pngImageB64String
 
 def plot(k, band, style, con=0):
-    dic = {1:'g',2:'r',3:'i'}
-    #load data
+    dic = {1:'g',2:'r',3:'i'} # 三个波段
+    # load data
     fits_name = search_fits(int(3*k)+int(band)-2)
     hdul = fits.open(str(fpath)+str(fits_name))
     if con:
+        # 是否对图像进行平滑
         img = conv(hdul[1].data,Kernal,mode="same")
     else:
         img = hdul[1].data
-    #log_img = logscale(img)
     
     fig = Figure()
     min_c = style[0]
     max_c = style[1]
     ax = fig.add_subplot(1,1,1)
     ax.axis('off')
-    # Figure.suptitle(fig,' '+str(dic[band])+' band',fontsize='xx-large') #title
+    # Figure.suptitle(fig,' '+str(dic[band])+' band',fontsize='xx-large')  # title
     fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
     ax.imshow(img, 
               cmap='gray',
