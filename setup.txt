@@ -1,7 +1,0 @@
-cd ./iraf/GalaxyAll
-source venv/bin/activate
-export PATH=/home/qifenghuang/anaconda3/bin:$PATH
-export FLASK_APP=main.py
-export FLASK_ENV=development
-flask run
-
