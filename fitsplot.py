@@ -13,7 +13,7 @@ from astropy.visualization import make_lupton_rgb
 
 fpath = '/xxx/xxx'  # fits 图像所在的目录
 h_1D = np.mat([[1.0/16,1.0/4,3.0/8,1.0/4,1.0/16]])
-Kernal = np.mat([[1.0/16],[1.0/4],[3.0/8],[1.0/4],[1.0/16]])*h_1D
+Kernel = np.mat([[1.0/16],[1.0/4],[3.0/8],[1.0/4],[1.0/16]])*h_1D
 
 def search_fits(n):
     '''从目录搜索第 n 个图像并且返回文件名'''
@@ -42,7 +42,7 @@ def plot(k, band, style, con=0):
     hdul = fits.open(str(fpath)+str(fits_name))
     if con:
         # 是否对图像进行平滑
-        img = conv(hdul[1].data,Kernal,mode="same")
+        img = conv(hdul[1].data,Kernel,mode="same")
     else:
         img = hdul[1].data
     
@@ -72,8 +72,8 @@ def plot(k, band, style, con=0):
 #        hduls[band] = fits.open(str(fpath)+str(fits_names[band]))
 #
 #    image = make_lupton_rgb((hduls[2])[1].data,
-#                            conv((hduls[1])[1].data,Kernal,mode="same"),
-#                            conv((hduls[0])[1].data,Kernal,mode="same"),
+#                            conv((hduls[1])[1].data,Kernel,mode="same"),
+#                            conv((hduls[0])[1].data,Kernel,mode="same"),
 #                            minimum=-0,
 #                            stretch=stretch,
 #                            Q=10-int(sty)*1.5)
