@@ -28,7 +28,7 @@ def stat():
 
 def LIST(val):
     a = []
-    for i in range(2187):
-        if hdul[1].data['class'][i] == int(val):
+    for i in range(2):
+        if hdul[1].data[i]['class'] == int(val):
             a.append(i+1)
     return a

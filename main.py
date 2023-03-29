@@ -61,7 +61,7 @@ def bands(name):
                            contra=contra,
                            info=data.galinfo(k-1),
                            fig1=fig_g, fig2=fig_r, fig3=fig_i,  # fig4=fig_c,
-                           Num=2187                     # 图像总数
+                           Num=2                    # 图像总数
                            )
 
 
