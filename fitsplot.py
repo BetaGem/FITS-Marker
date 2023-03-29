@@ -4,14 +4,13 @@ from os import listdir
 import numpy as np
 import base64
 
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure
-# from matplotlib.widgets import Slider
 from matplotlib.colors import SymLogNorm
-from scipy.signal import convolve2d as conv
+from scipy.signal import convolve2d
 from astropy.visualization import make_lupton_rgb
 
-fpath = '/xxx/xxx'  # fits 图像所在的目录
+fpath = "data/fits_images"  # fits 图像所在的目录
 h_1D = np.mat([[1.0/16,1.0/4,3.0/8,1.0/4,1.0/16]])
 Kernel = np.mat([[1.0/16],[1.0/4],[3.0/8],[1.0/4],[1.0/16]])*h_1D
 
@@ -27,7 +26,7 @@ def search_fits(n):
 def print_fig(fig):
     # Convert plot to PNG image
     pngImage = BytesIO()
-    FigureCanvas(fig).print_png(pngImage)
+    FigureCanvasAgg(fig).print_png(pngImage)
     
     # Encode PNG image to base64 string
     pngImageB64String = "data:image/png;base64,"
@@ -36,13 +35,13 @@ def print_fig(fig):
     return pngImageB64String
 
 def plot(k, band, style, con=0):
-    dic = {1:'g',2:'r',3:'i'} # 三个波段
+    dic = {1:'g', 2:'r', 3:'i'} # 三个波段
     # load data
-    fits_name = search_fits(int(3*k)+int(band)-2)
+    fits_name = search_fits(int(3*k) + int(band) - 2)
     hdul = fits.open(str(fpath)+str(fits_name))
     if con:
         # 是否对图像进行平滑
-        img = conv(hdul[1].data,Kernel,mode="same")
+        img = convolve2d(hdul[1].data,Kernel,mode="same")
     else:
         img = hdul[1].data
     
@@ -64,16 +63,16 @@ def plot(k, band, style, con=0):
     return print_fig(fig)
     
 #def RGB(k,sty):
-#    stretch = 2/(int(sty)+3)**2
-#    fits_names = ['']*3
-#    hduls = [None]*3
+#    stretch = 2 / (int(sty) + 3)**2
+#    fits_names = [''] * 3
+#    hduls = [None] * 3
 #    for band in range(3):
-#        fits_names[band] = search_fits(int(3*k)+band-1)
+#        fits_names[band] = search_fits(int(3*k) + band - 1)
 #        hduls[band] = fits.open(str(fpath)+str(fits_names[band]))
 #
 #    image = make_lupton_rgb((hduls[2])[1].data,
-#                            conv((hduls[1])[1].data,Kernel,mode="same"),
-#                            conv((hduls[0])[1].data,Kernel,mode="same"),
+#                            convolve2d((hduls[1])[1].data, Kernel, mode="same"),
+#                            convolve2d((hduls[0])[1].data, Kernel, mode="same"),
 #                            minimum=-0,
 #                            stretch=stretch,
 #                            Q=10-int(sty)*1.5)
