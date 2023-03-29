@@ -1,7 +1,8 @@
-from astropy.io import fits 
+from astropy.io import fits
 from numpy import sum
 
 hdul = fits.open('data/galaxies.fits', mode='update')
+
 
 def galinfo(k):
     '''显示星系参数'''
@@ -11,10 +12,12 @@ def galinfo(k):
     else:
         return [None] * len(hdul[1].data[0])
 
+
 def classify(k, val):
     '''判断结果写入文件'''
-    hdul[1].data[k-1][51] = val
-    
+    hdul[1].data[k-1]['class'] = val
+
+
 def stat():
     '''统计各类星系总数'''
     a = [0] * 7
@@ -22,10 +25,10 @@ def stat():
         a[i] = sum(hdul[1].data['class'] == i)
     return a
 
+
 def LIST(val):
     a = []
     for i in range(2187):
         if hdul[1].data['class'][i] == int(val):
             a.append(i+1)
     return a
-    

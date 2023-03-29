@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>FITS-Marker</h1>
+</div>
+
+<div class="Content">
+    <h2>Welcome!</h2>
+    <h2>Description</h2>
+    <p>
+        This is a program for FITS images labeling and categorizing, especially useful for a large amount (~ thousands)
+        of FITS images.
+    </p>
+    <h2>Demo</h2>
+    <img src="{{ url_for('static', filename='demo.png') }}" />
+    <h2>Get Start</h2>
+    <ul>
+        <li><h3><a href="/1">Start to mark galaxies</a></h3></li>
+        <li><h3><a href="/stat/stat">Statistics</a></h3></li>
+    </ul>
+</div>
+{% endblock %}
