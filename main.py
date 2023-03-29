@@ -61,7 +61,7 @@ def bands(name):
                            contra=contra,
                            info=data.galinfo(k-1),
                            fig1=fig_g, fig2=fig_r, fig3=fig_i,  # fig4=fig_c,
-                           Num=2                    # 图像总数
+                           Num=data.galnum()                    # 图像总数
                            )
 
 
@@ -79,6 +79,7 @@ def stat():
     return render_template('stat.html',
                            form=form,
                            stat=data.stat(),
+                           num=data.galnum()
                            )
 
 
@@ -88,7 +89,7 @@ def LIST(val):
     return render_template('list.html',
                            form=form,
                            val=int(val),
-                           LIST=data.LIST(val),
+                           LIST=data.LIST(data.galnum(), val),
                            )
 
 
