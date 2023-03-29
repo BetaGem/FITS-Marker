@@ -1,4 +1,4 @@
-FITS-Marker Version 0.1.0  
+FITS-Marker Version 0.1.1  
 -----------
 Update: 03/29/2023
 
