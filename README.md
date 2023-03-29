@@ -16,6 +16,10 @@ Additional features: Image contrast adjustment. Statistical tool for counting th
 
 You should have ```numpy, matplotlib, astropy, flask, flask-bootstrap, flask-wtf```  installed first.
 
+(If you meet this problem when you are installing packages listed above (eg:`pip install flask-bootstrap`) :
+`Could not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate`
+try:`pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org flask-bootstrap`)
+
 Follow chapters 1 to 4 of the book mentioned above, **OR**:
 
 In the installation path:

@@ -4,12 +4,15 @@
 
 {% block page_content %}
 <div class="page-header">
-<h2>
-     List of
-    <strong>
-        {% if val==1 %}<font color='green'>Yes</font>{% elif val==2 %}<font color='grey'>Polluted</font>{% elif val==3 %}None{% elif val==0 %}<font color='red'>No</font>{% elif val==6 %}<font color='grey'>Spiral</font>{% elif val==4 %}<font color='grey'>Merging</font>{% elif val==5 %}<font color='grey'>Peculiar</font>{% endif %}
-    </strong>
-    Galaxies:
+    <h2>
+        List of
+        <strong>
+            {% if val==1 %}<font color='green'>Yes</font>{% elif val==2 %}<font color='grey'>Polluted</font>{% elif
+            val==3 %}None{% elif val==0 %}<font color='red'>No</font>{% elif val==6 %}<font color='grey'>Spiral</font>{%
+            elif val==4 %}<font color='grey'>Merging</font>{% elif val==5 %}<font color='grey'>Peculiar</font>{% endif
+            %}
+        </strong>
+        Galaxies:
     </h2>
 </div>
 <div id="list" class="Content"></div>
@@ -18,20 +21,19 @@
     var dataStr = "<table width=\"1140\">";
 
     //自定义数组
-    var dataArr = {{LIST|tojson}};
+    var dataArr = {{ LIST | tojson}};
 
     /****普通for循环****/
     for (let i = 0; i < dataArr.length; i++) {
-        if(i%10==0){
-            dataStr+="<tr>"
+        if (i % 10 == 0) {
+            dataStr += "<tr>"
         }
-        dataStr += "<td align=\"right\"><a href='/" + dataArr[i] +"' target=\"blank\">" + dataArr[i] + '&nbsp;</a></td>';
-        if(i%10==9){
-            dataStr+="</tr>"
+        dataStr += "<td align=\"center\"><li><a href='/" + dataArr[i] + "' target=\"blank\">Galaxy No." + dataArr[i] + '&nbsp;</a></li></td>';
+        if (i % 10 == 9) {
+            dataStr += "</tr>"
         }
     };
-    dataStr+="</table>"
-    console.log(dataStr)
+    dataStr += "</table>"
 
     //拼接完字符串数组后用innerHTML把它渲染到页面中
     document.getElementById("list").innerHTML = dataStr;
