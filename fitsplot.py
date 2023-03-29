@@ -10,7 +10,7 @@ from matplotlib.colors import SymLogNorm
 from scipy.signal import convolve2d
 from astropy.visualization import make_lupton_rgb
 
-fpath = "data/fits_images"  # fits 图像所在的目录
+fpath = "data/fits_images/"  # fits 图像所在的目录
 h_1D = np.mat([[1.0/16,1.0/4,3.0/8,1.0/4,1.0/16]])
 Kernel = np.mat([[1.0/16],[1.0/4],[3.0/8],[1.0/4],[1.0/16]])*h_1D
 
