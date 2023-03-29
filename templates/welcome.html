@@ -18,8 +18,18 @@
     <img src="{{ url_for('static', filename='demo.png') }}" />
     <h2>Get Start</h2>
     <ul>
-        <li><h3><a href="/1">Start to mark galaxies</a></h3></li>
-        <li><h3><a href="/stat/stat">Statistics</a></h3></li>
+        <li>
+            <h3><a href="/1">Start to mark galaxies</a></h3>
+        </li>
+        <li>
+            <h3><a href="/stat/stat">Statistics</a></h3>
+        </li>
     </ul>
+    <h2>More</h2>
+    <p><a href="https://github.com/BetaGem/FITS-Marker">Source code</a> on GitHub.</p>
+    <p>I use FITS-Marker to mark 3649 galaxies from HSC-SSP. See
+        <a href="https://iopscience.iop.org/article/10.3847/1538-4365/ac85b1">this paper</a>
+        for more details about science.
+    </p>
 </div>
 {% endblock %}

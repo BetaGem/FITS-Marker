@@ -6,60 +6,72 @@
 
 {% block page_content %}
 
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    <h2>Galaxy No.{{k}}</h2>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>HSC ID</th>
+                <th>R.A.(deg)</th>
+                <th>Dec.(deg)</th>
+                <th>g(mag)</th>
+                <th>r(mag)</th>
+                <th>i(mag)</th>
+                <th>mass(log M_sun)</th>
+                <th>redshift</th>
+            </tr>
+            <tr>
+                <td>{{ info['object_id'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['ra'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['dec'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['g'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['r'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['i'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['mass'] }}&nbsp;&nbsp;</td>
+                <td>{{ info['redshift'] }}&nbsp;&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <table width="1140">
-    <tr>
-    <td><h2>Galaxy No.{{k}}</h2></td>
-    </tr>
-    </table>
-<table>
-<tr>
-    <th>HSC ID</th>
-    <th>R.A.(deg)</th>
-    <th>Dec.(deg)</th>
-    <th>g(mag)</th>
-    <th>r(mag)</th>
-    <th>i(mag)</th>
-    <th>mass(log M_sun)</th>
-    <th>redshift</th>
-</tr>
-<tr>
-    <td>{{ info['object_id'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['ra'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['dec'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['g'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['r'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['i'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['mass'] }}&nbsp;&nbsp;</td>
-    <td>{{ info['redshift'] }}&nbsp;&nbsp;</td>
-</tr>
-</table>
-    
-<table width="1140">
     <td>
-    <h4><strong>
-        current label:&nbsp;&nbsp;{% if info['class']==1 %}<font color='green'>Yes</font>{% elif info['class']==2 %}<font color='grey'>Polluted</font>{% elif info['class']==3 %}None{% elif info['class']==0 %}<font color='red'>No</font>{% elif info['class']==6 %}<font color='grey'>Spiral</font>{% elif info['class']==4 %}<font color='grey'>Merging</font>{% elif info['class']==5 %}<font color='grey'>Peculiar</font>{% endif %}
-        </strong></h4>
+        <h4><strong>
+                current label:&nbsp;&nbsp;{% if info['class']==1 %}<font color='green'>Yes</font>{% elif
+                info['class']==2 %}<font color='grey'>Polluted</font>{% elif info['class']==3 %}None{% elif
+                info['class']==0 %}<font color='red'>No</font>{% elif info['class']==6 %}<font color='grey'>Spiral
+                </font>{% elif info['class']==4 %}<font color='grey'>Merging</font>{% elif info['class']==5 %}<font
+                    color='grey'>Peculiar</font>{% endif %}
+            </strong></h4>
     </td>
-    <td align="right"><a href="https://www.legacysurvey.org/viewer?ra={{info['ra']}}&dec={{info['dec']}}&layer=hsc-dr2&zoom=16&photoz-dr9" target="_blank">View in Legacy Survey Sky Browser</a></td>
-    </table>
+    <td align="right"><a
+            href="https://www.legacysurvey.org/viewer?ra={{info['ra']}}&dec={{info['dec']}}&layer=hsc-dr2&zoom=16&photoz-dr9"
+            target="_blank">View in Legacy Survey Sky Browser</a></td>
+</table>
 
 
 <!--PLOT-->
 <div class="Content">
-   <table widtd="1140" border="0" align="center" cellpadding="0" cellspacing="0">
-       <tr>
+    <table widtd="1140" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
             <td align='center'>g band</td>
             <td align='center'>r band</td>
             <td align='center'>i band</td>
             <td align='center'>RGB(sdss)</td>
-       </tr> 
-       <tr>
-            <td><img src="{{fig1}}" width="280" height="280"/></td>
-            <td><img src="{{fig2}}" width="280" height="280"/></td>
-            <td><img src="{{fig3}}" width="280" height="280"/></td>
-            <td><img src="https://www.legacysurvey.org/viewer/jpeg-cutout?ra={{info['ra']}}&dec={{info['dec']}}&layer=sdss&pixscale=0.26" width="275" height="275"/></td>
-       </tr>
+        </tr>
+        <tr>
+            <td><img src="{{fig1}}" width="280" height="280" /></td>
+            <td><img src="{{fig2}}" width="280" height="280" /></td>
+            <td><img src="{{fig3}}" width="280" height="280" /></td>
+            <td><img src="https://www.legacysurvey.org/viewer/jpeg-cutout?ra={{info['ra']}}&dec={{info['dec']}}&layer=sdss&pixscale=0.26"
+                    width="275" height="275" /></td>
+        </tr>
     </table>
 </div>
 
@@ -68,38 +80,46 @@
 <!--BOTTONS-->
 <table widtd="900" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-    <td scope="col">
-    <form  action="/{% if k>1 %}{{k-1}}{% else %}1{%endif%}">
-        <button type="submit" style="color: black;"><b>&lt;&lt;</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:1">
-        <button type="submit" style="color: green;"><b>Yes&nbsp;</b></button>
-            </form></td>
-    <td scope="col">
-    <form  action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:2">
-        <button type="submit"Num style="color: grey;"><b>Pol&nbsp;</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:4">
-        <button type="submit" style="color: grey;"><b>Mer</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:5">
-        <button type="submit" style="color: grey;"><b>Pec</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:6">
-        <button type="submit" style="color: grey;"><b>Spi</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:0">
-        <button type="submit" style="color: red;"><b>No&nbsp;</b></button>
-            </form></td>
-    <td scope="col">
-    <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}">
-        <button type="submit" style="color: black;"><b>&gt;&gt;</b></button>
-            </form></td>
+        <td scope="col">
+            <form action="/{% if k>1 %}{{k-1}}{% else %}1{%endif%}">
+                <button type="submit" style="color: black;"><b>&lt;&lt;</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:1">
+                <button type="submit" style="color: green;"><b>Yes&nbsp;</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:2">
+                <button type="submit" Num style="color: grey;"><b>Pol&nbsp;</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:4">
+                <button type="submit" style="color: grey;"><b>Mer</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:5">
+                <button type="submit" style="color: grey;"><b>Pec</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:6">
+                <button type="submit" style="color: grey;"><b>Spi</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}/last_choice:0">
+                <button type="submit" style="color: red;"><b>No&nbsp;</b></button>
+            </form>
+        </td>
+        <td scope="col">
+            <form action="/{% if k<Num+1 %}{{k+1}}{% else %}{{Num}}{%endif%}">
+                <button type="submit" style="color: black;"><b>&gt;&gt;</b></button>
+            </form>
+        </td>
     </tr>
 </table>
 {% endblock %}
