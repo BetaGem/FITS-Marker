@@ -1,30 +1,31 @@
 from astropy.io import fits 
 from numpy import sum
 
-hdul = fits.open('galaxies.fits',mode='update')
+hdul = fits.open('data/galaxies.fits', mode='update')
 
 def galinfo(k):
     '''显示星系参数'''
     data = hdul[1].data
-    if k<len(hdul[1].data):
+    if k < len(hdul[1].data):
         return data[k]
     else:
-        return [None]*52
+        return [None] * len(hdul[1].data[0])
 
-def classify(k,val):
+def classify(k, val):
     '''判断结果写入文件'''
     hdul[1].data[k-1][51] = val
     
 def stat():
-    a = [0,0,0,0,0,0,0]
-    for i in range(7):
-        a[i] = sum(hdul[1].data['substr']==i)
+    '''统计各类星系总数'''
+    a = [0] * 7
+    for i in range(len(a)):
+        a[i] = sum(hdul[1].data['class'] == i)
     return a
 
 def LIST(val):
     a = []
     for i in range(2187):
-        if hdul[1].data['substr'][i] == int(val):
+        if hdul[1].data['class'][i] == int(val):
             a.append(i+1)
     return a
     
