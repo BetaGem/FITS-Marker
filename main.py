@@ -6,7 +6,7 @@ from fitsplot import plot
 from wtforms.validators import DataRequired
 from wtforms import SelectField, SubmitField
 from flask_wtf import FlaskForm
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for,redirect
 # UI
 from flask_bootstrap import Bootstrap
 
@@ -50,6 +50,8 @@ def bands(name):
         contrast = form.contrast.data
         contra = contrast
     k = int(name)
+    if k>data.galnum():
+        return redirect(url_for('stat'))
     # g,r,i 画三个波段图像
     fig_g = plot(k, 1, contrast_list[contrast], con=0)
     fig_r = plot(k, 2, contrast_list[contrast], con=0)
@@ -64,7 +66,7 @@ def bands(name):
                            Num=data.galnum()                    # 图像总数
                            )
 
-
+# 标记这一个星系的分类，并切换到下一个星系。
 @app.route('/<name>/last_choice:<val>', methods=['GET', 'POST'])
 def judge(name, val):
     k = int(name)
@@ -73,7 +75,7 @@ def judge(name, val):
     return bands(name)
 
 
-@app.route('/stat/stat')
+@app.route('/stat')
 def stat():
     form = FlaskForm()
     return render_template('stat.html',
@@ -83,7 +85,7 @@ def stat():
                            )
 
 
-@app.route('/stat/stat/<val>')
+@app.route('/stat/<val>')
 def LIST(val):
     form = FlaskForm()
     return render_template('list.html',
