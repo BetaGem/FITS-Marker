@@ -8,7 +8,7 @@ This is a program for FITS image labeling and categorizing, especially useful fo
 
 It's written based on the book: *Flask Web Development: Developing Web Applications with Python* by Miguel Grinberg.
 
-For us, we used it to mark 3649 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy, and saved the results into a FITS table. (See our paper https://iopscience.iop.org/article/10.3847/1538-4365/ac85b1 for more scientific details.)
+For us, we used it to mark 3658 galaxies from HSC-SSP, with 4 images (g, r, i, RGB) for each galaxy, and saved the results into a FITS table. (See our paper https://iopscience.iop.org/article/10.3847/1538-4365/ac85b1 for more scientific details.)
 
 Additional features: Image contrast adjustment. Statistical tool for counting the number of galaxies in each type.
 
